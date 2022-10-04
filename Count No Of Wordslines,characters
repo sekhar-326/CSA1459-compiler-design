@@ -1,0 +1,35 @@
+%{
+int nchar, nword, nline;
+%}
+%%
+\n { nline++; nchar++; }
+[^ \t\n]+ { nword++, nchar += yyleng; }
+. { nchar++; }
+%%
+int yywrap(void) {
+return 1;
+}
+int main(int argc, char *argv[]) {
+yyin = fopen(argv[1], "r");
+yylex();
+printf("Number of characters = %d\n", nchar);
+printf("Number of words = %d\n", nword);
+printf("Number of lines = %d\n", nline);
+fclose(yyin);
+}
+
+
+
+
+
+OUTPUT:
+wvzw wouuyyi 26738
+Number of characters = 19
+Number of words = 3
+Number of lines = 1
+
+
+
+sekhar studying in saveetha 3rd year
+in chennaiNumber of characters = 37
+Number of words = 6
